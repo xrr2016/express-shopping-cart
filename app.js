@@ -1,18 +1,19 @@
-var express = require('express');
-var path = require('path');
-var favicon = require('serve-favicon');
-var logger = require('morgan');
-var cookieParser = require('cookie-parser');
-var bodyParser = require('body-parser');
+var express = require('express')
+var path = require('path')
+var favicon = require('serve-favicon')
+var logger = require('morgan')
+var cookieParser = require('cookie-parser')
+var bodyParser = require('body-parser')
 var expressHbs = require('express-handlebars')
 var mongoose = require('mongoose')
-var index = require('./routes/index');
+var index = require('./routes/index')
+var session = require('express-session')
+
 
 var app = express()
 // mongoose.connect('mongodb://localhost:27017/shopping')
 
-var uri = 'mongodb://localhost:27017/shopping'
-global.db = mongoose.createConnection(uri)
+mongoose.connect("mongodb://localhost:27017/shopping")
 
 
 // view engine setup
@@ -26,7 +27,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-
+app.use(session({secret:"mysecret",resave:false,saveUninitialized:false}))
 app.use('/', index);
 
 // catch 404 and forward to error handler

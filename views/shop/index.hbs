@@ -1,108 +1,19 @@
-<div class="row">
-    <div class="col-sm-4 col-md-3">
-        <div class="thumbnail">
-            <img src="/images/p2380677316.jpg"  class="img-responsive img-thumbnail">
-            <div class="caption">
-                <h3>Thumbnail label</h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adim erit in vo22luptate velit esse cillum dolore eu fugiat nu</p>
-                <p>
-                  <strong>$12</strong>
-                  <a href="#" class="btn btn-primary pull-right" role="button">Buy</a>
-                </p>
+{{# each products }}
+    <div class="row">
+        {{# each this }}
+            <div class="col-sm-4 col-md-3">
+                <div class="thumbnail">
+                    <img src="{{ this.imagePath }}" class="img-responsive img-thumbnail">
+                    <div class="caption">
+                        <h3>{{this.title}}</h3>
+                        <p>{{this.description}}</p>
+                        <p>
+                            <strong>${{ this.price }}</strong>
+                            <a href="#" class="btn btn-primary pull-right" role="button">Buy</a>
+                        </p>
+                    </div>
+                </div>
             </div>
-        </div>
+        {{/each}}
     </div>
-    <div class="col-sm-4 col-md-3">
-        <div class="thumbnail">
-            <img src="/images/p2380677316.jpg"  class="img-responsive img-thumbnail">
-            <div class="caption">
-                <h3>Thumbnail label</h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adim erit in vo22luptate velit esse cillum dolore eu fugiat nu</p>
-                <p>
-                  <strong>$12</strong>
-                  <a href="#" class="btn btn-primary pull-right" role="button">Buy</a>
-                </p>
-            </div>
-        </div>
-    </div>
-    <div class="col-sm-4 col-md-3">
-        <div class="thumbnail">
-            <img src="/images/p2380677316.jpg"  class="img-responsive img-thumbnail">
-            <div class="caption">
-                <h3>Thumbnail label</h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adim erit in vo22luptate velit esse cillum dolore eu fugiat nu</p>
-                <p>
-                  <strong>$12</strong>
-                  <a href="#" class="btn btn-primary pull-right" role="button">Buy</a>
-                </p>
-            </div>
-        </div>
-    </div>
-    <div class="col-sm-4 col-md-3">
-        <div class="thumbnail">
-            <img src="/images/p2380677316.jpg"  class="img-responsive img-thumbnail">
-            <div class="caption">
-                <h3>Thumbnail label</h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adim erit in vo22luptate velit esse cillum dolore eu fugiat nu</p>
-                <p>
-                  <strong>$12</strong>
-                  <a href="#" class="btn btn-primary pull-right" role="button">Buy</a>
-                </p>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="row">
-    <div class="col-sm-4 col-md-3">
-        <div class="thumbnail">
-            <img src="/images/p2380677316.jpg"  class="img-responsive img-thumbnail">
-            <div class="caption">
-                <h3>Thumbnail label</h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adim erit in vo22luptate velit esse cillum dolore eu fugiat nu</p>
-                <p>
-                  <strong>$12</strong>
-                  <a href="#" class="btn btn-primary pull-right" role="button">Buy</a>
-                </p>
-            </div>
-        </div>
-    </div>
-    <div class="col-sm-4 col-md-3">
-        <div class="thumbnail">
-            <img src="/images/p2380677316.jpg"  class="img-responsive img-thumbnail">
-            <div class="caption">
-                <h3>Thumbnail label</h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adim erit in vo22luptate velit esse cillum dolore eu fugiat nu</p>
-                <p>
-                  <strong>$12</strong>
-                  <a href="#" class="btn btn-primary pull-right" role="button">Buy</a>
-                </p>
-            </div>
-        </div>
-    </div>
-    <div class="col-sm-4 col-md-3">
-        <div class="thumbnail">
-            <img src="/images/p2380677316.jpg"  class="img-responsive img-thumbnail">
-            <div class="caption">
-                <h3>Thumbnail label</h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adim erit in vo22luptate velit esse cillum dolore eu fugiat nu</p>
-                <p>
-                  <strong>$12</strong>
-                  <a href="#" class="btn btn-primary pull-right" role="button">Buy</a>
-                </p>
-            </div>
-        </div>
-    </div>
-    <div class="col-sm-4 col-md-3">
-        <div class="thumbnail">
-            <img src="/images/p2380677316.jpg"  class="img-responsive img-thumbnail">
-            <div class="caption">
-                <h3>Thumbnail label</h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adim erit in vo22luptate velit esse cillum dolore eu fugiat nu</p>
-                <p>
-                  <strong>$12</strong>
-                  <a href="#" class="btn btn-primary pull-right" role="button">Buy</a>
-                </p>
-            </div>
-        </div>
-    </div>
-</div>
+{{/each}}
