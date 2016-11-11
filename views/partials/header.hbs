@@ -13,11 +13,18 @@
         <a href="#" class="nav-link dropdown-toggle" id="header-dropdown" data-toggle='dropdown' aria-haspopup="true" aria-expanded="false">
           <i class="fa fa-user fa-lg" aria-hidden="true"></i>
           User Management
+          <i class="fa fa-chevron-down" aria-hidden="true"></i>
         </a>
         <ul class="dropdown-menu" role="menu">
-           <li> <a href="#" class="dropdown-item">User Account</a></li>
-           <li class="divider"></li>
-           <li> <a href="#" class="dropdown-item">logout</a></li>
+          {{#if login }}
+            <li> <a href="/user/profile" class="dropdown-item">profile</a></li>
+            <li class="divider" role="separator"></li>
+            <li> <a href="/user/logout" class="dropdown-item">logout</a></li>
+           {{ else }}
+             <li> <a href="/user/signup" class="dropdown-item">Sign Up </a></li>
+             <li class="divider" role="separator"></li>
+             <li> <a href="/user/signin" class="dropdown-item">Sign In </a></li>
+          {{/if}}
          </ul>
       </li>
     </ul>
