@@ -8,13 +8,14 @@ var expressHbs = require('express-handlebars')
 var mongoose = require('mongoose')
 var index = require('./routes/index')
 var session = require('express-session')
-
+var passport = require('passport')
+var flash    =  require('connect-flash')
 
 var app = express()
 // mongoose.connect('mongodb://localhost:27017/shopping')
 
 mongoose.connect("mongodb://localhost:27017/shopping")
-
+require('./config/passport')
 
 // view engine setup
 app.engine('.hbs',expressHbs({defaultLayout:'layout',extname:'.hbs'}))
@@ -22,13 +23,16 @@ app.set('view engine', '.hbs');
 
 // uncomment after placing your favicon in /publi2c
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
-app.use(logger('dev'));
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(logger('dev'))
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({ extended: false }))
+app.use(cookieParser())
+app.use(express.static(path.join(__dirname, 'public')))
 app.use(session({secret:"mysecret",resave:false,saveUninitialized:false}))
-app.use('/', index);
+app.use(flash())
+app.use(passport.initialize())
+app.use(passport.session())
+app.use('/', index)
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
