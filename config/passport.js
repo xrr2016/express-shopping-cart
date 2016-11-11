@@ -2,7 +2,6 @@ var passport = require('passport')
 var User = require('../models/user')
 var LocalStrategy = require('passport-local').Strategy;
 
-User
 
 passport.serializeUser(function(user, done) {
     done(null, user.id)
@@ -19,6 +18,18 @@ passport.use('local.signup', new LocalStrategy({
     passwordField: 'password',
     passReqToCallback: true
 }, function(req, email, password, done) {
+    req.checkBody('email', '不合法的email格式').notEmpty().isEmail()
+    req.checkBody('password', '不合法的密码').notEmpty().isLength({
+        min: 6
+    })
+    var errors = req.validationErrors()
+    if (errors) {
+      var errorsMesssage  = []
+      errors.forEach(function (error) {
+        errorsMesssage.push(error.msg)
+      })
+      return done(null,false,req.flash('error',errorsMesssage))
+    }
     User.findOne({
         'email': email
     }, function(err, user) {

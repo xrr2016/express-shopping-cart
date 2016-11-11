@@ -27,14 +27,15 @@ router.get('/', function(req, res, next) {
 
 //Get user signup page
 router.get('/user/signup', function(req, res, next) {
-        var messages = req.flash('error')
-        res.render('user/signup', {
-            csrfToken: req.csrfToken(),
-            messages: messages,
-            hasErrors: messages.length > 0
-        })
+    var messages = req.flash('error')
+    res.render('user/signup', {
+        csrfToken: req.csrfToken(),
+        messages: messages,
+        hasErrors: messages.length > 0
     })
-    //Post user signup
+})
+
+//Post user signup
 router.post('/user/signup', passport.authenticate('local.signup', {
         successRedirect: '/user/profile',
         failureRedirect: '/user/signup',
