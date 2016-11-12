@@ -17,13 +17,13 @@
         </a>
         <ul class="dropdown-menu" role="menu">
           {{#if login }}
-            <li> <a href="/user/profile" class="dropdown-item">profile</a></li>
+            <li> <a href="/user/profile" class="dropdown-item">个人信息</a></li>
             <li class="divider" role="separator"></li>
-            <li> <a href="/user/logout" class="dropdown-item">logout</a></li>
+            <li> <a href="/user/logout" class="dropdown-item">登出</a></li>
            {{ else }}
-             <li> <a href="/user/signup" class="dropdown-item">Sign Up </a></li>
+             <li> <a href="/user/signup" class="dropdown-item">注册</a></li>
              <li class="divider" role="separator"></li>
-             <li> <a href="/user/signin" class="dropdown-item">Sign In </a></li>
+             <li> <a href="/user/signin" class="dropdown-item">登录</a></li>
           {{/if}}
          </ul>
       </li>

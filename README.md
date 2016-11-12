@@ -2,4 +2,6 @@
 
 > express mongodb hbs
 
-[查看]()
+> npm install
+
+> npm start

@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 var Product = require('../models/product')
 var Cart = require('../models/cart')
+var Order = require('../models/order')
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -52,7 +53,7 @@ router.get('/shooping-cart', function(req, res, next) {
         })
     })
     //checkout
-router.get('/checkout', function(req, res, next) {
+router.get('/checkout', isLoggedIn,function(req, res, next) {
         if (!req.session.cart) {
             return res.redirect('/shopping-cart')
         }
@@ -65,7 +66,7 @@ router.get('/checkout', function(req, res, next) {
         })
     })
     //Post checkout
-router.post('/checkout', function(req, res, next) {
+router.post('/checkout', isLoggedIn,function(req, res, next) {
     if (!req.session.cart) {
         return res.redirect('/shopping-cart')
     }
@@ -83,11 +84,39 @@ router.post('/checkout', function(req, res, next) {
         req.flash('error',err.message)
         return res.redirect('/checkout')
       }
-      req.flash('success','购买成功!')
-      req.session.cart = null
-      res.redirect('/')
+      var order = new Order({
+        user:req.user,
+        cart:cart,
+        address:req.body.address,
+        naem:req.body.name,
+        paymentId:charge.id
+      })
+      order.save(function (err,result) {
+        if (err) {
+          return req.flash('error','出错了')
+        }
+        req.flash('success','购买成功!')
+        req.session.cart = null
+        res.redirect('/')
+      })
     });
 })
+
+//已经登录
+function isLoggedIn(req, res, next) {
+    if (req.isAuthenticated()) {
+        return next()
+    }
+    req.session.oldUrl = req.url  
+    res.redirect('/user/signin')
+}
+//未登录
+function notLoggedIn(req, res, next) {
+    if (!req.isAuthenticated()) {
+        return next()
+    }
+    res.redirect('/')
+}
 
 
 module.exports = router
